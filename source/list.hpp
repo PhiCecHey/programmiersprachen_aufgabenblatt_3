@@ -133,6 +133,7 @@ public:
 	//List() {}
 	List() = default;
 
+	/* copy constructor */
 	List(List const& list) {
 		ListNode<T>* temp = list.first_;
 		for (; temp->next; temp = temp->next) {
@@ -140,9 +141,6 @@ public:
 		}
 		this->push_back(temp->value);
 	}
-
-	// test and implement:
-	//TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
 
 	// test and implement:
 	// TODO: Move-Konstruktor (Aufgabe 3.9)
@@ -154,9 +152,16 @@ public:
 		//not implemented yet
 	}
 
-	/* ... */
-	// test and implement:
-	//TODO: (unifying) Assignment operator (Aufgabe 3.6)
+	/* unifying assignment operator = */
+	List& operator= (List const& list) {
+		this->clear();
+		ListNode<T>* temp = list.first_;
+		for (; temp->next; temp = temp->next) {
+			this->push_back(temp->value);
+		}
+		this->push_back(temp->value);
+		return *this;
+	}
 
 	/* ... */
 	// test and implement:
