@@ -48,6 +48,18 @@ TEST_CASE("clears list", "[list_clear]") {
 	REQUIRE(nullptr == get_last_pointer(list));
 }
 
+TEST_CASE("copy construct list", "[list{list}]") {
+	List<int> list{};
+	list.push_back(1);
+	list.push_back(2);
+	list.push_front(0);
+	List<int> list2{ list };
+
+	REQUIRE(get_first_pointer(list2)->value == 0);
+	REQUIRE(get_first_pointer(list2)->next->value == 1);
+	REQUIRE(get_last_pointer(list2)->value == 2);
+}
+
 //test cases for retrieving iterators
 /*#include "sub_tests/begin.test"
 #include "sub_tests/end.test"
@@ -77,8 +89,10 @@ int main(int argc, char* argv[])
 	list.pop_back();
 	list.pop_back();
 	list.pop_back();
-	*/
+	
 	list.clear();
+	*/
+	List<int> list2{list};
 
 	bool empty = list.empty();
 	int size = list.size();

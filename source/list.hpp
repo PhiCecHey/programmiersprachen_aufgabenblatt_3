@@ -133,6 +133,14 @@ public:
 	//List() {}
 	List() = default;
 
+	List(List const& list) {
+		ListNode<T>* temp = list.first_;
+		for (; temp->next; temp = temp->next) {
+			this->push_back(temp->value);
+		}
+		this->push_back(temp->value);
+	}
+
 	// test and implement:
 	//TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
 
