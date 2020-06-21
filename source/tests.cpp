@@ -6,13 +6,13 @@
 
 // Hilfsfunktionen, um indirekt auf die Member der Klasse List zuzugreifen (nur für die Tests!)
 template <typename T>
-size_t get_size(List<T> const& list_to_test) {return list_to_test.size_;}
+size_t get_size(List<T> const& list_to_test) { return list_to_test.size_; }
 
 template <typename T>
-ListNode<T>* get_first_pointer(List<T> const& list_to_test) {return list_to_test.first_;}
+ListNode<T>* get_first_pointer(List<T> const& list_to_test) { return list_to_test.first_; }
 
 template <typename T>
-ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.last_;}
+ListNode<T>* get_last_pointer(List<T> const& list_to_test) { return list_to_test.last_; }
 
 
 //test case definitions for default constructor of list as well as empty and size for empty list
@@ -32,8 +32,24 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 #include "sub_tests/front.test"
 #include "sub_tests/back.test"
 
+//test case for clear()
+TEST_CASE("clears list", "[list_clear]") {
+	List<int> list{};
+	list.push_back(1);
+	list.push_back(2);
+	list.push_front(0);
+	list.clear();
+	bool empty = list.empty();
+	int size = list.size();
+
+	REQUIRE(empty == true);
+	REQUIRE(size == 0);
+	REQUIRE(nullptr == get_first_pointer(list));
+	REQUIRE(nullptr == get_last_pointer(list));
+}
+
 //test cases for retrieving iterators
-#include "sub_tests/begin.test"
+/*#include "sub_tests/begin.test"
 #include "sub_tests/end.test"
 
 //iterator tests
@@ -43,9 +59,33 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 #include "sub_tests/iterators/operator_does_not_equal.test"
 #include "sub_tests/iterators/operator_iterate_forward.test"
 
-int main(int argc, char *argv[])
+*/
+int main(int argc, char* argv[])
 {
-  return Catch::Session().run(argc, argv);
+
+	List<int> list{};
+	list.push_back(1);
+	list.push_back(2);
+	list.push_front(0);
+	/*
+	list.pop_front();
+	list.pop_front();
+	list.pop_front();
+	list.pop_front();
+
+	list.pop_back();
+	list.pop_back();
+	list.pop_back();
+	list.pop_back();
+	*/
+	list.clear();
+
+	bool empty = list.empty();
+	int size = list.size();
+
+	int a = 5;
+
+	return Catch::Session().run(argc, argv);
 }
 
 

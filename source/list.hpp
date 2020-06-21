@@ -164,9 +164,10 @@ public:
 		// make use of operator==
 	}
 
-	/* ... */
+	/* deletes list */
 	~List() {
-		//TODO: Implement via clear-Method (Aufgabe 3.4)
+		this->clear();
+		//TODO: delete list itself
 	} //can not really be tested
 
 	/* ... */
@@ -183,10 +184,13 @@ public:
 		return {};
 	}
 
-	/* ... */
+	/* removes all elements of the list */
 	// test and implement:
-	//TODO: clear()-Method (Aufgabe 3.4)
-
+	void clear() {
+		while (!this->empty()) {
+			this->pop_front();
+		}
+	}
 
 	/* ... */
 	//TODO: member function insert (Aufgabe 3.13)
