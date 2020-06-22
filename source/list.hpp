@@ -170,17 +170,23 @@ public:
 	}
 
 	/* ... */
-	// test and implement:
-
 	bool operator==(List const& rhs) const
 	{
-		//TODO: operator== (Aufgabe 3.8)
+		if (this->size_ != rhs.size_) return false;
+		ListNode<T>* a = this->first_;
+		ListNode<T>* b = rhs.first_;
+		while (!compare(a, this->last_)) {
+			if (a->value != b->value) return false;
+			a = a->next;
+			b = b->next;
+		}
+		if (a->value != b->value) return false;
+		return true;
 	}
 
 	bool operator!=(List const& rhs) const
 	{
-		//TODO: operator!= (Aufgabe 3.8)
-		// make use of operator==
+		return !(this->operator==(rhs));
 	}
 
 	/* deletes list */

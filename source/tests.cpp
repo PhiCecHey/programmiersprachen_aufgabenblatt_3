@@ -95,6 +95,30 @@ TEST_CASE("reverse list", "[list_reverse]") {
 	REQUIRE(get_last_pointer(list4)->value == 2);
 }
 
+TEST_CASE("list operator== and !=", "[list_== and !=]") {
+	List<int> list{};
+	list.push_back(1);
+	list.push_back(2);
+	list.push_front(0);
+	List<int> list3{};
+	list3.push_back(-1);
+	list3.push_back(-2);
+	list3.push_back(-3);
+	List<int> list2{ list };
+	bool a = list == list2;
+	bool b = list == list;
+	bool c = list == list3;
+	REQUIRE(a == true);
+	REQUIRE(b == true);
+	REQUIRE(c == false);
+	a = list != list2;
+	b = list != list;
+	c = list != list3;
+	REQUIRE(a == false);
+	REQUIRE(b == false);
+	REQUIRE(c == true);
+}
+
 //test cases for retrieving iterators
 /*#include "sub_tests/begin.test"
 #include "sub_tests/end.test"
@@ -131,11 +155,15 @@ int main(int argc, char* argv[])
 	list2.push_back(3);
 	list2 = list;
 	*/
-	
-	/*List<int>* listP = new List<int>{ list };
-	List<int>* list3 = new List<int>{ *reverse(listP) };*/
-
 	list.reverse();
+	List<int> list3{};
+	list3.push_back(-1);
+	list3.push_back(-2);
+	list3.push_back(-3);
+	List<int> list4{list};
+	bool comp = list == list4;
+	comp = list == list;
+	comp = list == list3;
 
 	bool empty = list.empty();
 	int size = list.size();
