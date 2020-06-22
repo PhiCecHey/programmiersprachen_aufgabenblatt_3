@@ -16,6 +16,12 @@ struct ListNode {
 	T         value = T{};
 	ListNode* prev = nullptr;
 	ListNode* next = nullptr;
+
+	void swap(ListNode<T>* ln) {
+		T val = this->value;
+		this->value = ln->value;
+		ln->value = val;
+	}
 };
 
 
@@ -211,10 +217,21 @@ public:
 	/* ... */
 	//TODO: member function insert (Aufgabe 3.14)
 
-	/* ... */
-
-	//TODO: member function reverse (Aufgabe 3.7 - Teil 1)
-
+	/* reverses the elements */
+	void reverse() {
+		if (this->size_ < 2) return;
+		
+		ListNode<T>* lb = this->first_;
+		ListNode<T>* rb = this->last_;
+		while (!compare(lb, rb) && !(lb->next == rb)) {
+			lb->swap(rb);
+			lb = lb->next;
+			rb = rb->prev;
+		}
+		if (lb->next == rb) {
+			lb->swap(rb);
+		}
+	}
 
 	/* adds element to the front of the list */
 	void push_front(T const& element) {
@@ -328,6 +345,13 @@ public:
 		return this->size_;
 	};
 
+	ListNode<T>* b() {
+		return this->first_;
+	}
+
+	ListNode<T>* e() {
+		return this->first_;
+	}
 
 	// list members
 private:
@@ -336,12 +360,23 @@ private:
 	ListNode<T>* last_ = nullptr;
 };
 
-/* ... */
-//TODO: Freie Funktion reverse 
-//(Aufgabe 3.7 - Teil 2, benutzt Member-Funktion reverse)
+/* returns a new list with the reversed order of the param list*/
+template <typename T>
+List<T>* reverse(List<T>* const list) {
+	List<T>* list2 = new List<T>{list};
+	list2->reverse();
+	return list2;
+}
 
 /* ... */
 //TODO: Freie Funktion operator+ (3.10 - Teil 2)
 
+template <typename T>
+bool compare(ListNode<T>* p1, ListNode<T>* p2) {
+	if (p1->value != p2->value) return false;
+	else if (p1->prev != p2->prev) return false;
+	else if (p1->next != p2->next) return false;
+	else return true;
+}
 
 #endif // # define BUW_LIST_HPP

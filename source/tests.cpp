@@ -72,6 +72,29 @@ TEST_CASE("unifying assignment operator =", "[operator=]") {
 	REQUIRE(get_last_pointer(list2)->value == 2);
 }
 
+TEST_CASE("reverse list", "[list_reverse]") {
+	List<int> list{};
+	list.push_back(1);
+	list.push_back(2);
+	list.push_front(0);
+	list.reverse();
+
+	REQUIRE(get_first_pointer(list)->value == 2);
+	REQUIRE(get_first_pointer(list)->next->value == 1);
+	REQUIRE(get_last_pointer(list)->value == 0);
+
+	List<int> list3{};
+	list.push_back(3);
+	list.push_back(4);
+	list.push_front(2);
+	list.reverse();
+	List<int> list4 = list;
+
+	REQUIRE(get_first_pointer(list4)->value == 4);
+	REQUIRE(get_first_pointer(list4)->next->value == 3);
+	REQUIRE(get_last_pointer(list4)->value == 2);
+}
+
 //test cases for retrieving iterators
 /*#include "sub_tests/begin.test"
 #include "sub_tests/end.test"
@@ -103,13 +126,20 @@ int main(int argc, char* argv[])
 	list.pop_back();
 
 	list.clear();
-	*/
+	
 	List<int> list2{ list };
 	list2.push_back(3);
 	list2 = list;
+	*/
+	
+	/*List<int>* listP = new List<int>{ list };
+	List<int>* list3 = new List<int>{ *reverse(listP) };*/
+
+	list.reverse();
 
 	bool empty = list.empty();
 	int size = list.size();
+
 
 	int a = 5;
 
