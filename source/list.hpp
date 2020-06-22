@@ -207,9 +207,18 @@ public:
 
 	/* ... */
 	//TODO: member function insert (Aufgabe 3.13)
+	ListIterator<T>* insert(ListIterator<T> const& pos, T val) { 
+		ListNode<T>* insert = new ListNode{ val, pos.node, pos.node.next };
+		pos.node->next->prev = insert;
+		pos.node->next = insert;
+		ListIterator<T> li{};
+		li.node = insert;
+		//size_++;
+		return &li;
+	}
 
 	/* ... */
-	//TODO: member function insert (Aufgabe 3.14)
+	//TODO: member function erase (Aufgabe 3.14)
 
 	/* reverses the elements */
 	void reverse() {

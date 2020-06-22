@@ -126,9 +126,9 @@ TEST_CASE("list operator== and !=", "[list_== and !=]") {
 //iterator tests
 #include "sub_tests/iterators/operator_star.test"
 #include "sub_tests/iterators/operator_arrow.test"
-#include "sub_tests/iterators/operator_equals.test"
+/*#include "sub_tests/iterators/operator_equals.test"
 #include "sub_tests/iterators/operator_does_not_equal.test"
-#include "sub_tests/iterators/operator_iterate_forward.test"
+#include "sub_tests/iterators/operator_iterate_forward.test"*/
 
 
 int main(int argc, char* argv[])
@@ -154,7 +154,7 @@ int main(int argc, char* argv[])
 	List<int> list2{ list };
 	list2.push_back(3);
 	list2 = list;
-	*/
+	
 	list.reverse();
 	List<int> list3{};
 	list3.push_back(-1);
@@ -168,8 +168,10 @@ int main(int argc, char* argv[])
 	auto b = list.begin();
 	auto e = list.end();
 	bool c = b == e;
-	c = b == list.begin();
-	
+	c = b == list.begin();*/
+
+	ListIterator<int> li = list.begin();
+	//list.insert(li, 5);
 
 	bool empty = list.empty();
 	int size = list.size();
