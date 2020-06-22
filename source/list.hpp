@@ -22,6 +22,7 @@ struct ListNode {
 		this->value = ln->value;
 		ln->value = val;
 	}
+
 };
 
 
@@ -42,10 +43,7 @@ struct ListIterator {
 		if (nullptr == node) {
 			throw "Iterator does not point to valid node";
 		}
-
-		//TODO: remaining implementation of derefenciation of 
-		//      iterator using operator* (Aufgabe 3.12 - Teil 1)
-
+		return this->node->value;
 	} //call *it
 
 	/* DESCRIPTION  operator->() */
@@ -53,9 +51,7 @@ struct ListIterator {
 		if (nullptr == node) {
 			throw "Iterator does not point to valid node";
 		}
-
-		//TODO: remaining implementation of derefenciation of 
-		//      iterator using operator-> (Aufgabe 3.12 - Teil 2)
+		return  &this->node->value;
 	}  //call it->method() or it->member
 
 
@@ -64,10 +60,10 @@ struct ListIterator {
 		if (nullptr == node) {
 			throw "Iterator does not point to valid node";
 		}
-
-		//TODO: Implement Postincrement-Operation for Iterator
-		//      (Aufgabe 3.12 - Teil 3)
-
+		/*ListIterator li{};
+		li.node = this->node;
+		return li;*/
+		return this->next();
 	}
 
 	/* POSTINCREMENT (signature distinguishes the iterators),
@@ -76,27 +72,23 @@ struct ListIterator {
 		if (nullptr == node) {
 			throw "Iterator does not point to valid node";
 		}
-
-		//TODO: Implement Postincrement-Operation for Iterator
-		//      (Aufgabe 3.12 - Teil 4)
-
+		/*ListIterator li{};
+		li.node = this->node;
+		return li;*/
+		return this->next();
 	}
 
-
-	/* ... */
+	/* compares two ListIterators */
 	bool operator==(ListIterator<T> const& x) const {
-		//TODO: Implement Equality-Operation for Iterator
-		//      (Aufgabe 3.12 - Teil 5)
 		// Iterators should be the same if they refer to the same node
-		return false;
+		
+		if (this->node != x.node) return false;
+		return true;
 	} // call it: == it
-
-	/* ... */
+	
+	/* returns the opposite of operator== */
 	bool operator!=(ListIterator<T> const& x) const {
-		//TODO: Implement Inequality-Operation for Iterator  
-		//      (Aufgabe 3.12 - Teil 6)
-		// Reuse operator==
-		return false;
+		return this->operator==(x);
 	} // call it: != it
 
 	/* Advances Iterator */

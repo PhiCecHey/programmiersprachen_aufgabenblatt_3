@@ -122,7 +122,7 @@ TEST_CASE("list operator== and !=", "[list_== and !=]") {
 //test cases for retrieving iterators
 #include "sub_tests/begin.test"
 #include "sub_tests/end.test"
-/*
+
 //iterator tests
 #include "sub_tests/iterators/operator_star.test"
 #include "sub_tests/iterators/operator_arrow.test"
@@ -130,7 +130,7 @@ TEST_CASE("list operator== and !=", "[list_== and !=]") {
 #include "sub_tests/iterators/operator_does_not_equal.test"
 #include "sub_tests/iterators/operator_iterate_forward.test"
 
-*/
+
 int main(int argc, char* argv[])
 {
 
@@ -164,6 +164,12 @@ int main(int argc, char* argv[])
 	bool comp = list == list4;
 	comp = list == list;
 	comp = list == list3;
+
+	auto b = list.begin();
+	auto e = list.end();
+	bool c = b == e;
+	c = b == list.begin();
+	
 
 	bool empty = list.empty();
 	int size = list.size();
