@@ -195,18 +195,14 @@ public:
 		//TODO: delete list itself
 	} //can not really be tested
 
-	/* ... */
+	/* returns iterator begin */
 	ListIterator<T> begin() {
-		//TODO: begin-Method returning an Iterator to the 
-		//      first element in the List (Aufgabe 3.11)
-		return {};
+		return ListIterator<T>{this->first_};
 	}
 
-	/* ... */
+	/* returns iterator begin */
 	ListIterator<T> end() {
-		//TODO: end-Method returning an Iterator to element after (!) 
-		//      the last element in the List (Aufgabe 3.11)
-		return {};
+		return ListIterator<T>{nullptr};
 	}
 
 	/* removes all elements of the list */
@@ -331,23 +327,6 @@ public:
 
 	/* returns size of the list */
 	std::size_t size() const {
-		/*
-		if (this->empty()) {
-			return 0;
-		}
-		ListNode<T>* temp = this->first_;
-		std::size_t count = 1;
-		while (temp != this->last_) {
-			temp = temp->next;
-			count++;
-		}
-		if (!temp->next) {
-			std::cout << "FEHLER bei size()";
-			return count;
-		}
-		temp = temp->next;
-		count++;
-		return count;*/
 		return this->size_;
 	};
 
